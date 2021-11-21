@@ -19,7 +19,7 @@ import Models.Orders;
 
 public class ManageReservationAdapter extends RecyclerView.Adapter<ManageReservationAdapter.ViewHoder> {
     private Context mContext;
-    private ArrayList<MenuItemDetails> menuItemDetailsList;
+    private ArrayList<MenuItemDetails> menuItemDetails;
     public ManageReservationAdapter(){
 
     }
@@ -34,24 +34,28 @@ public class ManageReservationAdapter extends RecyclerView.Adapter<ManageReserva
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoder holder, int position) {
-        holder.title.setText(menuItemDetailsList.get(position).getName());
-        holder.quantity.setText(menuItemDetailsList.get(position).getQuantity());
-        holder.price.setText(Double.toString(menuItemDetailsList.get(position).getPrice()));
-        holder.total.setText(Double.toString(menuItemDetailsList.get(position).getTotalPrice()));
+        holder.title.setText(menuItemDetails.get(position).getName());
+        String quantity =Integer.toString(menuItemDetails.get(position).getQuantity());
+        String price =Double.toString(menuItemDetails.get(position).getPrice());
+        String total =Double.toString(menuItemDetails.get(position).getTotalPrice());
+
+        holder.quantity.setText(quantity);
+        holder.price.setText(price);
+        holder.total.setText(total);
 
         Glide.with(mContext)
-                .load(menuItemDetailsList.get(position).getImageUrl())
+                .load(menuItemDetails.get(position).getImageUrl())
                 .into(holder.imageView);
     }
 
     @Override
     public int getItemCount() {
-        return menuItemDetailsList.size();
+        return menuItemDetails.size();
     }
 
-    public ManageReservationAdapter(Context mContext, ArrayList<MenuItemDetails> menuItemDetailsList) {
+    public ManageReservationAdapter(Context mContext, ArrayList<MenuItemDetails> _menuItemDetails) {
         this.mContext = mContext;
-        this.menuItemDetailsList = menuItemDetailsList;
+        this.menuItemDetails = _menuItemDetails;
     }
 
     public class ViewHoder extends RecyclerView.ViewHolder{

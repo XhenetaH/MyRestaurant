@@ -17,12 +17,13 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import Models.Orders;
 import Models.Table;
 
 public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.ViewHoder>{
 
     private Context mContext;
-    private ArrayList<Table> tableList;
+    private ArrayList<Orders> orderList;
 
     public ReservationAdapter(){}
 
@@ -36,9 +37,11 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHoder holder, int position) {
-        holder.textView.setText(tableList.get(position).getName());
-
-        if(tableList.get(position).getStatus().equals("free"))
+        String total = Double.toString(orderList.get(position).getTotal());
+        String TableId = orderList.get(position).getID();
+        holder.orderId.setText(TableId);
+        holder.totalPrice.setText(total);
+        /*if(tableList.get(position).getStatus().equals("free"))
         {
             holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.green_category_background));
         }
@@ -49,17 +52,14 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
         else if(tableList.get(position).getStatus().equals("waiting"))
         {
             holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.yellow_category_background));
-        }
+        }*/
 
-
-        Glide.with(mContext)
-                .load(tableList.get(position).getImageUrl())
-                .into(holder.imageView);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(),ManageReservation_Activity.class);
+                i.putExtra("TableID",TableId);
                 view.getContext().startActivity(i);
 
             }
@@ -70,24 +70,22 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     @Override
     public int getItemCount() {
-        return tableList.size();
+        return orderList.size();
     }
 
-    public ReservationAdapter(Context mContext, ArrayList<Table> tableList) {
+    public ReservationAdapter(Context mContext, ArrayList<Orders> orderList) {
         this.mContext = mContext;
-        this.tableList = tableList;
+        this.orderList = orderList;
     }
 
     public class ViewHoder extends RecyclerView.ViewHolder{
-        ImageView imageView;
-        TextView textView;
-        ConstraintLayout layout;
+        TextView totalPrice, orderId;
+
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
 
-            imageView = itemView.findViewById(R.id.reservationImage);
-            textView = itemView.findViewById(R.id.res_tableName);
-            layout = itemView.findViewById(R.id.reservation_Layout);
+            totalPrice = itemView.findViewById(R.id.txtTotalPrice);
+            orderId = itemView.findViewById(R.id.OrderIDTxt);
         }
     }
 }

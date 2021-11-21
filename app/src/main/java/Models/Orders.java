@@ -8,16 +8,34 @@ public class Orders {
     public static String Table="";
     private String TableID;
     private double Total;
+    private ArrayList<MenuItemDetails> MenuItemList;
+    private String Status;
 
     public Orders(){
 
     }
 
-    public Orders(double total, String ID,String tableID) {
-        this.Total = total;
-        this.ID = ID;
-        this.TableID = tableID;
+    public ArrayList<MenuItemDetails> getMenuItemList() {
+        return MenuItemList;
+    }
 
+    public void setMenuItemList(ArrayList<MenuItemDetails> menuItemList) {
+        MenuItemList = menuItemList;
+    }
+
+    public Orders(String ID, String tableID, double total, ArrayList<MenuItemDetails> menuItemList) {
+        this.ID = ID;
+        TableID = tableID;
+        Total = total;
+        MenuItemList = menuItemList;
+    }
+
+    public String getStatus() {
+        return Status;
+    }
+
+    public void setStatus(String status) {
+        Status = status;
     }
 
     public String getTableID() {

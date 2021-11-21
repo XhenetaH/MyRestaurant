@@ -19,12 +19,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import Models.MenuItemDetails;
+import Models.Orders;
 import Models.Table;
 
 public class Reservation_Activity extends AppCompatActivity {
     private FloatingActionButton tableFB;
     private DatabaseReference myRef;
-    private ArrayList<Table> tableList;
+    private ArrayList<Orders> orderList;
     private ReservationAdapter reservationAdapter;
     private RecyclerView recyclerView;
     @Override
@@ -34,7 +36,7 @@ public class Reservation_Activity extends AppCompatActivity {
 
         tableFB = findViewById(R.id.reservationFAB);
         myRef = FirebaseDatabase.getInstance().getReference();
-        tableList = new ArrayList<>();
+        orderList = new ArrayList<>();
         recyclerView = findViewById(R.id.reservationRecycleView);
         tableFB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,20 +53,25 @@ public class Reservation_Activity extends AppCompatActivity {
     }
 
     private void GetDataFromFirebase(){
-        Query query = myRef.child("Tables");
+        Query query = myRef.child("Orders");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 ClearAll();
                 for(DataSnapshot snapsh : snapshot.getChildren()){
-                    Table table = new Table();
-                    table.setImageUrl(snapsh.child("imageUrl").getValue().toString());
-                    table.setName(snapsh.child("name").getValue().toString());
-                    table.setID(snapsh.child("id").getValue().toString());
-                    table.setStatus(snapsh.child("status").getValue().toString());
-                    tableList.add(table);
+                    ArrayList<MenuItemDetails> menuItemDetailsList = new ArrayList<>();
+                    Orders orders = new Orders();
+
+                    orders.setTotal(Double.parseDouble(snapsh.child("total").getValue().toString()));
+                    orders.setTableID(snapsh.child("tableID").getValue().toString());
+                    orders.setID(snapsh.child("id").getValue().toString());
+                    orders.setStatus(snapsh.child("status").getValue().toString());
+                    if(orders.getStatus().toString().equals("ordered"))
+                        orderList.add(orders);
+
                 }
-                reservationAdapter = new ReservationAdapter(Reservation_Activity.this,tableList);
+
+                reservationAdapter = new ReservationAdapter(getApplicationContext(),orderList);
                 recyclerView.setAdapter(reservationAdapter);
                 reservationAdapter.notifyDataSetChanged();
             }
@@ -76,15 +83,15 @@ public class Reservation_Activity extends AppCompatActivity {
         });
     }
     private void ClearAll(){
-        if(tableList!=null){
-            tableList.clear();
+        if(orderList!=null){
+            orderList.clear();
 
             if(reservationAdapter!=null){
                 reservationAdapter.notifyDataSetChanged();
             }
         }
 
-        tableList = new ArrayList<>();
+        orderList = new ArrayList<>();
     }
 
 }
