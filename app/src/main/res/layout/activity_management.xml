@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ManagementActivity"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/categoryManagementBTN"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textColor="@color/white"
+        android:background="@drawable/orange_button_background"
+        android:text="Category Management"
+        android:textAllCaps="false"
+        android:textSize="24sp"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/menuItemManagementBTN"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:background="@drawable/orange_button_background"
+        android:textAllCaps="false"
+        android:text="Menu Item Management" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/reservationManagementBTN"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:text="Reservation"
+        android:background="@drawable/orange_button_background"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:textSize="24sp" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/tablesManagementBTN"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/orange_button_background"
+        android:text="Tables Management"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        android:textAllCaps="false"/>
+</LinearLayout>
