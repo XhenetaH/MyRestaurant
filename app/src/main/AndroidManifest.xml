@@ -12,6 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyRestaurant">
         <activity
+            android:name=".LogInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Register_Activity"
+            android:exported="false" />
+        <activity
             android:name=".ManageReservation_Activity"
             android:exported="false" />
         <activity

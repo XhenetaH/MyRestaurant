@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/category_background.xml" value="0.202734375" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/darkRed_button_background.xml" value="0.202734375" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/darkred_button_background.xml" value="0.109765625" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/green_category_background.xml" value="0.114453125" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/orange_button_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/red_category_background.xml" value="0.202734375" />
@@ -11,12 +13,15 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/yellow_button_background.xml" value="0.202734375" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable-v24/yellow_category_background.xml" value="0.114453125" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable/background_textbox.xml" value="0.2" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable/darkred_button_background.xml" value="0.20038610038610039" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable/green_button_background.xml" value="0.202734375" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/drawable/red_button_background.xml" value="0.202734375" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_add_category.xml" value="0.176" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_add_menu_item.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_add_table.xml" value="0.176" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_category_management.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_log_in.xml" value="0.190625" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_login.xml" value="0.190625" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_manage_reservation.xml" value="0.190625" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_management.xml" value="0.2" />
@@ -24,6 +29,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_menu_item_management.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_my_bag.xml" value="0.176" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_orders_management.xml" value="0.2" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_register.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_reservation.xml" value="0.190625" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_reserved_order_list.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_scan_qr_code.xml" value="0.190625" />
@@ -33,6 +39,7 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_udmenu_item.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_udtable.xml" value="0.2" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_user_main.xml" value="0.2" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/activity_users_management.xml" value="0.190625" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/all_menu_items.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/bag_tem.xml" value="0.264" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/MyRestaurant/app/src/main/res/layout/category_item.xml" value="0.264" />

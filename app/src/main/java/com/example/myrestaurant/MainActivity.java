@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
         staffBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this,ManagementActivity.class));
-                finish();
+                startActivity(new Intent(getApplicationContext(),LogInActivity.class));
             }
         });
 
