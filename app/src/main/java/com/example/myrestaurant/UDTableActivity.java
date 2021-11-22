@@ -3,6 +3,8 @@ package com.example.myrestaurant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.net.Uri;
@@ -29,9 +31,10 @@ import DB.TablesDB;
 public class UDTableActivity extends AppCompatActivity {
     private TablesDB db = new TablesDB();
     private EditText nameTxt;
-    private ImageView imageV;
-    private Button updateBtn, deleteBtn;
+    private ImageView updateBtn, deleteBtn,imageV;
+    private Button busyBtn, freeBtn;
     private ProgressBar progressBar;
+    private CardView cardView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,11 +44,31 @@ public class UDTableActivity extends AppCompatActivity {
         imageV = findViewById(R.id.udtableImageView);
         updateBtn = findViewById(R.id.tableUpdateBtn);
         deleteBtn = findViewById(R.id.tableDeleteBtn);
+        cardView = findViewById(R.id.cardView);
+        freeBtn = findViewById(R.id.freeBtn);
+        busyBtn = findViewById(R.id.busyBtn);
 
         String name = getIntent().getStringExtra("Name");
         String ID = getIntent().getStringExtra("id");
+        String Status = getIntent().getStringExtra("status");
         Glide.with(getApplicationContext()).load(getIntent().getStringExtra("Image")).into(imageV);
         nameTxt.setText(name);
+
+        if(Status.equals("busy"))
+        {
+            cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.red_category_background));
+            busyBtn.setVisibility(View.GONE);
+        }
+        else if(Status.equals("waiting"))
+        {
+            cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.yellow_category_background));
+        }
+        else if(Status.equals("free"))
+        {
+            cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.green_category_background));
+            busyBtn.setVisibility(View.GONE);
+            freeBtn.setVisibility(View.GONE);
+        }
 
         updateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +77,20 @@ public class UDTableActivity extends AppCompatActivity {
             }
         });
 
+        busyBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateStatus(ID,"busy");
+                cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.red_category_background));
+            }
+        });
+        freeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateStatus(ID,"free");
+                cardView.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.green_category_background));
+            }
+        });
         deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,4 +145,23 @@ public class UDTableActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void updateStatus(String id, String status)
+    {
+        Map<String,Object> map = new HashMap<>();
+        map.put("status",status);
+
+        db.root.child(id).updateChildren(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getApplicationContext(), "Status Updated Successfully", Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
 }
