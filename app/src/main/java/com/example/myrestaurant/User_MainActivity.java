@@ -66,30 +66,15 @@ public class User_MainActivity extends AppCompatActivity {
         GetCategoryFromFirebase();
         GetDataFromFirebase();
 
-        // E merr emrin e kategoris kur te klikojme po spo di qa me bo me toooo
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMessageReceiver,
-                new IntentFilter("custom-message"));
-
         bagImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startActivity(new Intent(User_MainActivity.this,OrdersManagementActivity.class));
             }
         });
 
 
     }
-
-    // E merr emrin e kategoris kur te klikojme po spo di qa me bo me toooo
-    public BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // Get extra data included in the Intent
-            categroy = intent.getStringExtra("CategoryName");
-            Toast.makeText(User_MainActivity.this,categroy ,Toast.LENGTH_SHORT).show();
-        }
-    };
 
     private void searchMenuItem()
     {

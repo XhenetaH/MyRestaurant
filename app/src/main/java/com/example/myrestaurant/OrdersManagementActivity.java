@@ -17,6 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import Models.ChangeNumberItemsListener;
 import Models.ManagementCard;
@@ -34,7 +36,7 @@ public class OrdersManagementActivity extends AppCompatActivity {
     double tax;
     private String TableID;
     public DatabaseReference root = FirebaseDatabase.getInstance().getReference("Orders");
-    public DatabaseReference root2;
+    public DatabaseReference rootTable = FirebaseDatabase.getInstance().getReference("Tables");
 
     private ManagementCard managementCard;
 
@@ -50,7 +52,6 @@ public class OrdersManagementActivity extends AppCompatActivity {
         scrollView = findViewById(R.id.scrollView4);
         checkoutBtn = findViewById(R.id.checkoutBTN);
 
-
         InitList();
         calculateCard();
         bottomNavigation();
@@ -59,7 +60,6 @@ public class OrdersManagementActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 TableID = Orders.Table;
-                root2 = FirebaseDatabase.getInstance().getReference("Orders").child(TableID);
                 uploadToFirebase();
             }
         });
@@ -112,6 +112,7 @@ public class OrdersManagementActivity extends AppCompatActivity {
         orders.setID(_id);
         orders.setTableID(TableID);
         orders.setTotal(tot);
+        orders.setStatus("ordered");
         root.child(_id).setValue(orders).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
@@ -122,8 +123,15 @@ public class OrdersManagementActivity extends AppCompatActivity {
                 Toast.makeText(OrdersManagementActivity.this, "Uploaded Successfully", Toast.LENGTH_SHORT).show();
             }
         });
+        UpdateStatus(TableID);
 
     }
 
+    private void UpdateStatus(String tableId)
+    {
+        Map<String,Object> mapTable = new HashMap<>();
+        mapTable.put("status","waiting");
+        rootTable.child(tableId).updateChildren(mapTable);
+    }
 
 }

@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -38,34 +40,35 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
     @Override
     public void onBindViewHolder(@NonNull ViewHoder holder, int position) {
         String total = Double.toString(orderList.get(position).getTotal());
-        String TableId = orderList.get(position).getID();
-        holder.orderId.setText(TableId);
+        String OrderId = orderList.get(position).getID();
+        String Status = orderList.get(position).getStatus();
+        holder.orderId.setText(OrderId);
         holder.totalPrice.setText(total);
-        /*if(tableList.get(position).getStatus().equals("free"))
+        if(orderList.get(position).getStatus().equals("ordered"))
         {
             holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.green_category_background));
         }
-        else if(tableList.get(position).getStatus().equals("busy"))
+        else if(orderList.get(position).getStatus().equals("canceled"))
         {
             holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.red_category_background));
         }
-        else if(tableList.get(position).getStatus().equals("waiting"))
+        else if(orderList.get(position).getStatus().equals("prepare"))
         {
             holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.yellow_category_background));
-        }*/
+        }
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(view.getContext(),ManageReservation_Activity.class);
-                i.putExtra("TableID",TableId);
+                i.putExtra("OrderId",OrderId);
+                i.putExtra("status",Status);
                 view.getContext().startActivity(i);
 
             }
         });
-
-
     }
 
     @Override
@@ -80,12 +83,14 @@ public class ReservationAdapter extends RecyclerView.Adapter<ReservationAdapter.
 
     public class ViewHoder extends RecyclerView.ViewHolder{
         TextView totalPrice, orderId;
+        ConstraintLayout layout;
 
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
-
+            layout = itemView.findViewById(R.id.reservation_Layout);
             totalPrice = itemView.findViewById(R.id.txtTotalPrice);
             orderId = itemView.findViewById(R.id.OrderIDTxt);
+
         }
     }
 }

@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.orhanobut.dialogplus.DialogPlus;
 
 import java.util.ArrayList;
 
@@ -43,12 +44,24 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHoder> {
     public void onBindViewHolder(@NonNull ViewHoder holder, int position) {
         Table table = tableList.get(position);
         holder.textView.setText(tableList.get(position).getName());
-
+        holder.status.setText(tableList.get(position).getStatus());
+        if(tableList.get(position).getStatus().equals("free"))
+        {
+            holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.green_category_background));
+        }
+        else if(tableList.get(position).getStatus().equals("busy"))
+        {
+            holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.red_category_background));
+        }
+        else if(tableList.get(position).getStatus().equals("waiting"))
+        {
+            holder.layout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.yellow_category_background));
+        }
         Glide.with(mContext)
                 .load(tableList.get(position).getImageUrl())
                 .into(holder.imageView);
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -56,7 +69,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHoder> {
                 i.putExtra("Name",table.getName().toString());
                 i.putExtra("Image",table.getImageUrl());
                 i.putExtra("id",table.getID());
-
+                i.putExtra("status",table.getStatus());
                 view.getContext().startActivity(i);
 
 
@@ -71,7 +84,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHoder> {
 
     public class ViewHoder extends RecyclerView.ViewHolder{
         ImageView imageView;
-        TextView textView;
+        TextView textView,status;
         ConstraintLayout layout;
         public ViewHoder(@NonNull View itemView) {
             super(itemView);
@@ -79,6 +92,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHoder> {
             imageView = itemView.findViewById(R.id.codeImage);
             textView = itemView.findViewById(R.id.tableName);
             layout = itemView.findViewById(R.id.table_Layout);
+            status = itemView.findViewById(R.id.txtStatus);
         }
     }
 }

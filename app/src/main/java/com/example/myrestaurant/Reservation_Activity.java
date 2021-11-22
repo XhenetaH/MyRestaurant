@@ -66,7 +66,7 @@ public class Reservation_Activity extends AppCompatActivity {
                     orders.setTableID(snapsh.child("tableID").getValue().toString());
                     orders.setID(snapsh.child("id").getValue().toString());
                     orders.setStatus(snapsh.child("status").getValue().toString());
-                    if(orders.getStatus().toString().equals("ordered"))
+                    if(orders.getStatus().toString().equals("ordered") || orders.getStatus().toString().equals("prepare"))
                         orderList.add(orders);
 
                 }
